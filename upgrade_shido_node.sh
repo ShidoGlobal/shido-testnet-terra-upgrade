@@ -59,7 +59,7 @@ if [ "$OS" = "Ubuntu" ] && { [ "$VERSION" = "20.04" ] || [ "$VERSION" = "22.04" 
     print_status "Downloading shidod binary for Ubuntu $VERSION..."
     
     # Download the binary
-    DOWNLOAD_URL="https://github.com/ShidoGlobal/shido-testnet-terra-upgrade/releases/download/terra-upgrade/shidod"
+    DOWNLOAD_URL="https://github.com/ShidoGlobal/shido-testnet-terra-upgrade/releases/download/v3.3.0/shidod"
     print_status "Download URL: $DOWNLOAD_URL"
     
     # Remove existing binary if present
