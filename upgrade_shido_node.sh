@@ -97,18 +97,18 @@ if [ "$OS" = "Ubuntu" ] && { [ "$VERSION" = "20.04" ] || [ "$VERSION" = "22.04" 
     # Add upgrade with Cosmovisor (if cosmovisor is available)
     if command -v cosmovisor >/dev/null 2>&1; then
         print_status "Adding upgrade to Cosmovisor..."
-        cosmovisor add-upgrade terra "$current_path/$BINARY"
-        print_status "Upgrade module 'terra' created successfully"
+        cosmovisor add-upgrade v3.3.0 "$current_path/$BINARY"
+        print_status "Upgrade module 'v3.3.0' created successfully"
     else
         print_warning "Cosmovisor not found. Binary copied to upgrade directory manually."
         print_warning "You may need to configure Cosmovisor manually."
     fi
     
     
-    chmod u+x $HOMEDIR/cosmovisor/upgrades/terra/bin/shidod
+    chmod u+x $HOMEDIR/cosmovisor/upgrades/v3.3.0/bin/shidod
     print_status "Shido upgrade completed successfully!"
     print_status "Binary location: $current_path/$BINARY"
-    print_status "Cosmovisor upgrade: $HOMEDIR/cosmovisor/upgrades/terra/bin/shidod"
+    print_status "Cosmovisor upgrade: $HOMEDIR/cosmovisor/upgrades/v3.3.0/bin/shidod"
     
 else
     print_error "Unsupported OS or version: $OS $VERSION"
