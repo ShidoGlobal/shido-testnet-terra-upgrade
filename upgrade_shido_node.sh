@@ -59,7 +59,7 @@ if [ "$OS" = "Ubuntu" ] && { [ "$VERSION" = "20.04" ] || [ "$VERSION" = "22.04" 
     print_status "Downloading shidod binary for Ubuntu $VERSION..."
     
     # Download the binary
-    DOWNLOAD_URL="https://github.com/ShidoGlobal/shido-testnet-terra-upgrade/releases/download/v3.3.0/shidod"
+    DOWNLOAD_URL="https://github.com/ShidoGlobal/shido-testnet-terra-upgrade/releases/download/v3.3.1/shidod"
     print_status "Download URL: $DOWNLOAD_URL"
     
     # Remove existing binary if present
@@ -97,18 +97,19 @@ if [ "$OS" = "Ubuntu" ] && { [ "$VERSION" = "20.04" ] || [ "$VERSION" = "22.04" 
     # Add upgrade with Cosmovisor (if cosmovisor is available)
     if command -v cosmovisor >/dev/null 2>&1; then
         print_status "Adding upgrade to Cosmovisor..."
-        cosmovisor add-upgrade v3.3.0 "$current_path/$BINARY"
-        print_status "Upgrade module 'v3.3.0' created successfully"
+        cosmovisor add-upgrade v3.3.1 "$current_path/$BINARY"
+        print_status "Upgrade module 'v3.3.1' created successfully"
     else
         print_warning "Cosmovisor not found. Binary copied to upgrade directory manually."
         print_warning "You may need to configure Cosmovisor manually."
     fi
     
     
-    chmod u+x $HOMEDIR/cosmovisor/upgrades/v3.3.0/bin/shidod
+    chmod u+x $HOMEDIR/cosmovisor/upgrades/v3.3.1/bin/shidod
     print_status "Shido upgrade completed successfully!"
     print_status "Binary location: $current_path/$BINARY"
-    print_status "Cosmovisor upgrade: $HOMEDIR/cosmovisor/upgrades/v3.3.0/bin/shidod"
+    print_status "Cosmovisor upgrade: $HOMEDIR/cosmovisor/upgrades/v3.3.1/bin/shidod"
+    sed -i 's/timeout_commit = "3s"/timeout_commit = "500ms"/g' "$HOMEDIR/config/config.toml"
     
 else
     print_error "Unsupported OS or version: $OS $VERSION"
